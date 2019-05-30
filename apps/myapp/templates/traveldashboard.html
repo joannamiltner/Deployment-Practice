@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Travel Dashboard</title>
+</head>
+<body>
+
+    <a href="/logout">Logout</a>
+    <h4>Hello, {{ user.username }}</h4>
+    
+    <br>
+
+    <h2>Your Trip Schedules</h2>
+    <table>
+        <tr>
+            <th>Destination</th>
+            <th>Travel Start Date</th>
+            <th>Travel End Date</th>
+            <th>Description</th>
+        </tr>
+        {% for join in joins %}
+        <tr>
+            <td><a href="/description/{{join.destination.id}}">{{ join.destination.city }}</a></td>
+            <td>{{ join.destination.start_date }}</td>
+            <td>{{ join.destination.end_date }}</td>
+            <td>{{ join.destination.destination_description }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <br>
+    <br>
+
+    <h2>Other User's Travel Plans</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Destination</th>
+            <th>Travel Start Date</th>
+            <th>Travel End Date</th>
+            <th>Joining?</th>
+        </tr>
+        {% for destination in notFavs %}
+        <tr>
+            <td>{{ destination.added_by.username }}</td>
+            <td><a href="/description/{{destination.id}}">{{ destination.city }}</a></td>
+            <td>{{ destination.start_date }}</td>
+            <td>{{ destination.end_date }}</td>
+            <td> <a href="/favorite/{{destination.id}}">Join</a></td> 
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/add">Add Travel Plan</a>
+</body>
+</html>

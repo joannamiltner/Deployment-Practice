@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Description</title>
+</head>
+<body>
+    <a href="/traveldashboard">Home</a>
+    <a href="/logout">Logout</a><br>
+
+    <h2>{{destination.city}}</h2>
+    <p>Planned by: {{ destination.added_by.username }}</p>
+    <p>Description: {{destination.destination_description}}</p>
+    <p>Travel Date From: {{ destination.start_date }}</p>
+    <p>Travel Date To: {{ destination.end_date }}</p>
+    
+    <br>
+
+    <h3>Other user's joining the trip:</h3><br>
+        {% for join in users_who_fave_destination %}
+            <p>{{ join.user.username }}</p>
+        {% endfor %}
+
+</body>
+</html>
